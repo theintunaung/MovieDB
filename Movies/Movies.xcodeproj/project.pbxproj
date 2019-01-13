@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FB5A52321EB1F89001CB7EE /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB5A52221EB1F89001CB7EE /* libc.tbd */; };
 		1FF0FE1121D8E4BD001D2228 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE1021D8E4BD001D2228 /* AppDelegate.m */; };
 		1FF0FE1421D8E4BD001D2228 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE1321D8E4BD001D2228 /* ViewController.m */; };
 		1FF0FE1721D8E4BD001D2228 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FF0FE1521D8E4BD001D2228 /* Main.storyboard */; };
@@ -17,7 +18,7 @@
 		1FF0FE3421D8E4BF001D2228 /* MoviesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE3321D8E4BF001D2228 /* MoviesUITests.m */; };
 		1FF0FE4321D8E71D001D2228 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE4221D8E71D001D2228 /* NetworkManager.m */; };
 		1FF0FE4621D8F5FF001D2228 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE4521D8F5FF001D2228 /* URLConnection.m */; };
-		1FF0FE6B21DB0A6E001D2228 /* SortMovies.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE6A21DB0A6E001D2228 /* SortMovies.c */; };
+		1FF0FE6B21DB0A6E001D2228 /* SortMovies.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE6A21DB0A6E001D2228 /* SortMovies.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C93C35B721DC54A10012D6A7 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C35B621DC54A10012D6A7 /* Movie.m */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FB5A52221EB1F89001CB7EE /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		1FF0FE0C21D8E4BD001D2228 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF0FE0F21D8E4BD001D2228 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1FF0FE1021D8E4BD001D2228 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB5A52321EB1F89001CB7EE /* libc.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FB5A52121EB1F89001CB7EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FB5A52221EB1F89001CB7EE /* libc.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1FF0FE0321D8E4BD001D2228 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +112,7 @@
 				1FF0FE2721D8E4BF001D2228 /* MoviesTests */,
 				1FF0FE3221D8E4BF001D2228 /* MoviesUITests */,
 				1FF0FE0D21D8E4BD001D2228 /* Products */,
+				1FB5A52121EB1F89001CB7EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -394,7 +406,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -447,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

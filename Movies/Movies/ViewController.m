@@ -22,8 +22,9 @@
 @property (assign, nonatomic) NSInteger totalPageFor2017;
 @property (assign, nonatomic) NSInteger downloadedPageFor2018;
 @property (assign, nonatomic) NSInteger totalPageFor2018;
-@property (strong, nonatomic) NSMutableArray *data;
-@property (nonatomic) NSString *filepath;
+@property (strong, nonatomic) NSArray *data;
+@property (nonatomic,retain) NSString *filepath;
+@property (nonatomic,retain) NSString *docpath;
 @end
 
 @implementation ViewController
@@ -33,12 +34,16 @@
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"downladed_data"] == NULL) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"downladed_data"];
     }
-    self.data = [[NSMutableArray alloc]init];
+    self.data = [NSArray array];
+    //_filepath =  [[NSString alloc]init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.docpath = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    self.filepath = [self.docpath stringByAppendingPathComponent:@"Data.txt"];
+    
     _downloadedPageFor2017 = 775;//1;
     _totalPageFor2017 = 1;
     _downloadedPageFor2018 = 600;//1;
@@ -47,6 +52,8 @@
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"downladed_data"]) {
         [self sortMovies];
     }else {
+        [[NSFileManager defaultManager] removeItemAtPath:self.filepath error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/Output.txt",self.docpath] error:nil];
         [self loadDataForYear2017];
     }
 }
@@ -96,8 +103,6 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self sortMovies];
             }];
-           
-            
         }
     }];
 }
@@ -126,20 +131,16 @@
     }];
 }
 
-
 -(void)writeTitle:(NSString *)title withVote:(NSString *)vote
 {
-    //Get the file path
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"Data.txt"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:self.filepath])
+    {
+        [[NSFileManager defaultManager] createFileAtPath:self.filepath contents:nil attributes:nil];
+    }
     
-    //create file if it doesn't exist
-    if(![[NSFileManager defaultManager] fileExistsAtPath:fileName])
-        [[NSFileManager defaultManager] createFileAtPath:fileName contents:nil attributes:nil];
-    
-    NSFileHandle *file = [NSFileHandle fileHandleForUpdatingAtPath:fileName];
+    NSFileHandle *file = [NSFileHandle fileHandleForUpdatingAtPath:self.filepath];
     NSString *content;
-    content = [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];
+    content = [NSString stringWithContentsOfFile:self.filepath encoding:NSUTF8StringEncoding error:nil];
     NSString *mergedContent;
     
     mergedContent = [NSString stringWithFormat:@"%@,%@\n %@",title,vote,content];
@@ -148,17 +149,28 @@
     
 }
 
--(void)sortMovies{
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    self.filepath = [documentsDirectory stringByAppendingPathComponent:@"Data"];
-    
-    //NSMutableString *filePath = [NSMutableString stringWithFormat:@"%@",fileName];
-    pathChar = [self.filepath  cStringUsingEncoding:NSUTF8StringEncoding];//UTF8String
+-(void)sortMovies {
 
-     char const *path_cstr = [[NSFileManager defaultManager] fileSystemRepresentationWithPath:self.filepath];
-    int result = readData(path_cstr);
+    NSLog(@"%@",self.filepath );
+    int result = readData((const char * __restrict)[self.docpath UTF8String]);
     NSLog(@"result %d", result);
+    if (result == 0) {
+        [self loadData];
+    }
+    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"downladed_data"];
+    
+}
+
+-(void)loadData {
+    NSString *filepath = [NSString stringWithFormat:@"%@/Output.txt",self.docpath];
+    NSError *error;
+    NSString *fileContents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:&error];
+    if (error)
+        NSLog(@"Error reading file: %@", error.localizedDescription);
+    self.data = [fileContents componentsSeparatedByString:@"\n"];
+    NSLog(@"items = %lu", (unsigned long)[self.data count]);
 }
 
 @end
+

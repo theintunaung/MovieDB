@@ -15,7 +15,9 @@ struct Movie
 {    long vote;
      char title[MAXCHAR];
 };
-//struct Movie arr[];
+
 void sortMovies(void);
-int readData(const char *path);
+
+extern int readData(const char * __restrict path);
+
 #endif /* SortMovies_h */
