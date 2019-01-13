@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1FB5A52321EB1F89001CB7EE /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB5A52221EB1F89001CB7EE /* libc.tbd */; };
+		1FB5A52921EB7C7D001CB7EE /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5A52821EB7C7D001CB7EE /* MovieTableViewCell.m */; };
 		1FF0FE1121D8E4BD001D2228 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE1021D8E4BD001D2228 /* AppDelegate.m */; };
 		1FF0FE1421D8E4BD001D2228 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0FE1321D8E4BD001D2228 /* ViewController.m */; };
 		1FF0FE1721D8E4BD001D2228 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FF0FE1521D8E4BD001D2228 /* Main.storyboard */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		1FB5A52221EB1F89001CB7EE /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
+		1FB5A52721EB7C7D001CB7EE /* MovieTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
+		1FB5A52821EB7C7D001CB7EE /* MovieTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
 		1FF0FE0C21D8E4BD001D2228 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF0FE0F21D8E4BD001D2228 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1FF0FE1021D8E4BD001D2228 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				1FF0FE4221D8E71D001D2228 /* NetworkManager.m */,
 				1FF0FE4421D8F5FF001D2228 /* URLConnection.h */,
 				1FF0FE4521D8F5FF001D2228 /* URLConnection.m */,
+				1FB5A52721EB7C7D001CB7EE /* MovieTableViewCell.h */,
+				1FB5A52821EB7C7D001CB7EE /* MovieTableViewCell.m */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 			files = (
 				1FF0FE4621D8F5FF001D2228 /* URLConnection.m in Sources */,
 				1FF0FE4321D8E71D001D2228 /* NetworkManager.m in Sources */,
+				1FB5A52921EB7C7D001CB7EE /* MovieTableViewCell.m in Sources */,
 				C93C35B721DC54A10012D6A7 /* Movie.m in Sources */,
 				1FF0FE1421D8E4BD001D2228 /* ViewController.m in Sources */,
 				1FF0FE1F21D8E4BF001D2228 /* main.m in Sources */,

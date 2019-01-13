@@ -9,15 +9,14 @@
 #import "ViewController.h"
 #import "NetworkManager.h"
 #include "SortMovies.h"
+#import "MovieTableViewCell.h"
 
-@interface ViewController ()
+
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
-    //struct Movie arr[];
-    //struct Movie **data;
-    //struct Movie movies[] ;
-    const char *pathChar;
     
 }
+
 @property (assign, nonatomic) NSInteger downloadedPageFor2017;
 @property (assign, nonatomic) NSInteger totalPageFor2017;
 @property (assign, nonatomic) NSInteger downloadedPageFor2018;
@@ -25,6 +24,8 @@
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic,retain) NSString *filepath;
 @property (nonatomic,retain) NSString *docpath;
+@property(nonatomic, strong) IBOutlet UITableView *tableView;
+
 @end
 
 @implementation ViewController
@@ -170,7 +171,34 @@
         NSLog(@"Error reading file: %@", error.localizedDescription);
     self.data = [fileContents componentsSeparatedByString:@"\n"];
     NSLog(@"items = %lu", (unsigned long)[self.data count]);
+    [self.tableView reloadData];
 }
 
+#pragma mark - UITableViewDelegate UITableViewDataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.data.count >10) {
+        return  10;
+    }else {
+        return  self.data.count;
+    }
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* aTitle = self.data[indexPath.row];
+    MovieTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"reuseCellId"];
+    cell.label1.text = aTitle;
+        return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 83.5;
+}
 @end
 
