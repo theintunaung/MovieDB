@@ -10,6 +10,7 @@
 #import "URLConnection.h"
 static NSString * const baseAPI = @"https://api.themoviedb.org/3";
 static NSString * const discoverPath = @"/discover/movie";
+static NSString *apiKey = @"1816d8a8b1da93ab2a80b3bd935a76e3";
 
 //https://api.themoviedb.org/3/discover/movie?api_key=1816d8a8b1da93ab2a80b3bd935a76e3
 
@@ -42,7 +43,7 @@ static NSString * const discoverPath = @"/discover/movie";
     return self;
 }
 
-+ (void)discoverMovieWithAPIKey:(NSString *)apiKey year:(NSString*)aYear page:(NSString*)aPage onCompletion:(void (^)(BOOL success, id JSON))completion{
++ (void)discoverMovieWithYear:(NSString*)aYear page:(NSString*)aPage onCompletion:(void (^)(BOOL success, id JSON))completion{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (apiKey) [params setObject:apiKey forKey:@"api_key"];
     if (aYear) [params setObject:aYear forKey:@"primary_release_year"];
@@ -56,6 +57,7 @@ static NSString * const discoverPath = @"/discover/movie";
 
 + (URLConnection *)callAPI:(NSString *)api withParameters:(NSDictionary *)params method:(NSString *)method authentication:(BOOL)auth onCompletion:(void (^)(BOOL success, id JSON))completion
 {
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?api_key=%@&primary_release_year=%@&page=%@", baseAPI, api,[params objectForKey:@"api_key"],[params objectForKey:@"primary_release_year"],[params objectForKey:@"page"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -81,15 +83,7 @@ static NSString * const discoverPath = @"/discover/movie";
     return connection;
 }
 
-+ (void)handleError:(NSDictionary *)errorDict
-{
-    NSLog(@"%@", errorDict);
-    //    NSNumber *errorCode = errorDict[@"code"];
-    //    if ([errorCode integerValue] == kErrorCodeNotAuthorized){
-    //        [HUUserManager logOff];
-    //        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotAuth" object:nil];
-    //    }
-}
+
 
 @end
 

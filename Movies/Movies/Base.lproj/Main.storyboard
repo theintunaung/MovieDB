@@ -53,17 +53,28 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="CSr-X1-hzM"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qUH-us-9vn">
+                                <rect key="frame" x="177.5" y="333.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="E3y-Xb-nsB"/>
+                                    <constraint firstAttribute="height" constant="20" id="bds-Cd-4V1"/>
+                                </constraints>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9zc-jj-daq" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Ltn-bL-WGr"/>
+                            <constraint firstItem="qUH-us-9vn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VAL-Pa-o1c"/>
                             <constraint firstItem="9zc-jj-daq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eCo-d8-Utc"/>
+                            <constraint firstItem="qUH-us-9vn" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="gh7-an-Lod"/>
                             <constraint firstItem="9zc-jj-daq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="poB-3r-iGu"/>
                             <constraint firstItem="9zc-jj-daq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xd1-OF-iTg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activity" destination="qUH-us-9vn" id="rM6-vb-ovj"/>
                         <outlet property="tableView" destination="9zc-jj-daq" id="86R-4K-qnQ"/>
                     </connections>
                 </viewController>

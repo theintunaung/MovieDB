@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NetworkManager : NSObject
 
-+ (void)discoverMovieWithAPIKey:(NSString *)apiKey year:(NSString*)aYear page:(NSString*)aPage onCompletion:(void (^)(BOOL success, id JSON))completion;
++ (void)discoverMovieWithYear:(NSString*)aYear page:(NSString*)aPage onCompletion:(void (^)(BOOL success, id JSON))completion;
 
 @end
 
